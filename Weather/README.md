@@ -11,3 +11,4 @@
 6. Wind speed in Km/h
 7. Humadity
 8. Sunrise and sunset time
+<img src="weather app Screenshot.png">
