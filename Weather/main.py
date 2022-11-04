@@ -35,6 +35,7 @@ def Weather(canvas):
         Clear = "☾"
         sign = ""
         normal = "🌤"
+        smoke = "🌫"
         if condition == "Clear" and "p.m." in current_time and hour > 6:
             sign = Clear
         elif condition == "Rain":
@@ -45,12 +46,14 @@ def Weather(canvas):
             sign = Sunny
         elif condition == "Clouds":
             sign = Clouds
+        elif condition == "Smoke":
+            sign = smoke
         else:
             sign = normal
         
         final_info = "🌡" + str(temp) + "°C"+  "   " +condition + " "+ sign
         info_data = f"Detailed Weather Status: \n{city.upper()}"
-        final_data = "Time: " + current_time + "\n" + "Temperature: " + str(min_temp) + "°C" + " / " + str(max_temp) + "°C" +"\n" + "Air Pressure: " + str(pressure) + "hPa" + "\n" + "Wind Speed: "  + str(wind) + " Km/h" "\n" +"Humidity: " + str(humidity) + "\n" + "Sunrise: " + sunrise[::-2] + " a.m." + "\n" + "Sunset: " + sunset[::-2] + " p.m."
+        final_data = "Time         : " + current_time + "\n----------------------------\n" + "Temperature  : " + str(min_temp) + "°C" + " / " + str(max_temp) + "°C" +"\n----------------------------\n" + "Air Pressure : " + str(pressure) + " hPa" + "\n----------------------------\n" + "Wind Speed   : "  + str(wind) + " Km/h" "\n----------------------------\n" +"Humidity     : " + str(humidity) + "%\n----------------------------\n" + "Sunrise      : " + sunrise[::-2] + " a.m." + "\n----------------------------\n" + "Sunset       : " + sunset[::-2] + " p.m."
         
         label1.config(text = final_info,bg="skyblue")
         label2.config(text = info_data,bg="yellow")
@@ -65,19 +68,19 @@ def Weather(canvas):
         
 
 canvas = tr.Tk()
-canvas.geometry("500x400")
+canvas.geometry("500x550")
 canvas.title("Weather App")
-default_font0 = ("Lucida Console", 15, "bold")
+default_font0 = ("Lucida Console", 25, "bold")
 default_font1 = ("Bauhaus 93", 35, "bold")
-default_font2 = ("Gill Sans MT", 25, "bold")
-default_font3 = ("Lucida Console", 15, "bold")
+default_font2 = ("Gill Sans MT", 25, "bold","italic")
+default_font3 = ("Lucida Console", 15)
 label0 = tr.Label(canvas, font=default_font0)
 label0.pack()
 
 intro = "Enter the City/Country:"
 label0.config(text = intro)
 
-textField = tr.Entry(canvas, justify='center', width = 25, font = 50,bg="pink")
+textField = tr.Entry(canvas, justify='center', width = 20, font=default_font0 ,bg="pink")
 textField.pack(pady = 20)
 textField.focus()
 textField.bind('<Return>', Weather)
